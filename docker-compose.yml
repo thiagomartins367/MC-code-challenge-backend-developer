@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  multiverse_travels_booker:
+    container_name: multiverse_travels_booker
+    image: api_multiverse_travels_booker
+    build:
+      context: .
+      target: prod
+    working_dir: /usr/src/api
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - multiverse_travels_booker
+
+networks:
+  multiverse_travels_booker:
+    external: false
+    name: multiverse_travels_booker
