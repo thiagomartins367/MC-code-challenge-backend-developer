@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  dev_multiverse_travels_booker:
+    container_name: dev_multiverse_travels_booker
+    image: dev_api_multiverse_travels_booker
+    build:
+      context: .
+      target: dev
+    working_dir: /usr/src/dev-api
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/usr/src/dev-api/src # Mapeamento apenas para ambiente DEV
+      - ./public:/usr/src/dev-api/public # Mapeamento apenas para ambiente DEV
+      - ./spec:/usr/src/dev-api/spec # Mapeamento apenas para ambiente DEV
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - dev_multiverse_travels_booker
+
+networks:
+  dev_multiverse_travels_booker:
+    external: false
+    name: dev_multiverse_travels_booker
