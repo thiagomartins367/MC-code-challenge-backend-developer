@@ -1,0 +1,6 @@
+/docs/
+/lib/
+/bin/api
+/.shards/
+*.dwarf
+sentry

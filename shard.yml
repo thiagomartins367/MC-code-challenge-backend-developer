@@ -1,0 +1,22 @@
+name: api
+version: 0.1.0
+
+authors:
+  - THIAGO MARTINS <thiago17thiago@gmail.com>
+
+targets:
+  api:
+    main: src/api.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+
+development_dependencies:
+  # `sentry` reconstrói e executa a API quando alterações de código são feitas
+  sentry:
+    github: samueleaton/sentry
+
+crystal: 1.8.2
+
+license: MIT
