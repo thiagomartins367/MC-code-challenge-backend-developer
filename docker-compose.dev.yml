@@ -8,14 +8,41 @@ services:
       target: dev
     working_dir: /usr/src/dev-api
     restart: always
+    env_file:
+      - ./.env.development.local
     ports:
-      - 3000:3000
+      - 3005:3000
     volumes:
+      - ./db:/usr/src/dev-api/db # Mapeamento apenas para ambiente DEV
+      - ./sam.cr:/usr/src/dev-api/sam.cr # Mapeamento apenas para ambiente DEV
+      - ./Makefile:/usr/src/dev-api/Makefile # Mapeamento apenas para ambiente DEV
       - ./src:/usr/src/dev-api/src # Mapeamento apenas para ambiente DEV
       - ./public:/usr/src/dev-api/public # Mapeamento apenas para ambiente DEV
       - ./spec:/usr/src/dev-api/spec # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      - dev_multiverse_travels_booker
+
+  dev_db_multiverse_travels_booker:
+    container_name: dev_db_multiverse_travels_booker
+    image: mysql:8.0.33
+    command: mysqld --default-authentication-plugin=mysql_native_password # Comando necessário para que o "jennifer ORM" conecte-se ao banco dados
+    restart: "always"
+    env_file:
+      - ./db/.env.development.local
+    ports:
+      - 3003:3306
+    platform: linux/x86_64
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
     networks:
       - dev_multiverse_travels_booker
 
