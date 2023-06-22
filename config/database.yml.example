@@ -1,0 +1,19 @@
+default: &default
+  host: dev_db_multiverse_travels_booker
+  port: "3306"
+  user: root
+  password: root123456
+  adapter: mysql
+  skip_dumping_schema_sql: true
+
+development:
+  <<: *default
+  db: dev_multiverse_travels_booker
+
+test:
+  <<: *default
+  db: application_database_name_test
+
+production:
+  <<: *default
+  db: application_database_name_production
