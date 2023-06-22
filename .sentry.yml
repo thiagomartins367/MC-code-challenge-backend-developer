@@ -1,0 +1,3 @@
+build: crystal build ./src/api.cr -o ./bin/dev_api
+run: ./bin/dev_api
+watch: ["./sam.cr", "./src/**/*.cr", "./src/**/*.ecr"]
