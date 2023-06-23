@@ -16,8 +16,8 @@ module Api
 
     post "/travel_plans" do |context|
       response = context.response
-      params = context.params
-      result = entity_factory.create_travels_booker(params.json)
+      request_body = context.params.json
+      result = entity_factory.create_travels_booker(request_body)
       if result.is_a?(Error)
         status_code = result.status_code
         message = result.message
@@ -45,6 +45,21 @@ module Api
       response = context.response
       id = context.params.url["id"]
       result = entity_factory.get_travels_booker_by_id(id)
+      if result.is_a?(Error)
+        status_code = result.status_code
+        message = result.message
+        message_json = {message: message}.to_json
+        halt context, status_code: status_code, response: message_json
+      end
+      response.status_code = 200
+      result.to_json
+    end
+
+    put "/travel_plans/:id" do |context|
+      response = context.response
+      id = context.params.url["id"]
+      request_body = context.params.json
+      result = entity_factory.update_travels_booker(id, request_body)
       if result.is_a?(Error)
         status_code = result.status_code
         message = result.message
