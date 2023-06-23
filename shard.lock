@@ -28,6 +28,10 @@ shards:
     git: https://github.com/imdrasil/jennifer.cr.git
     version: 0.12.0
 
+  jennifer_twin:
+    git: https://github.com/imdrasil/jennifer_twin.git
+    version: 0.1.1
+
   kemal:
     git: https://github.com/kemalcr/kemal.git
     version: 1.4.0
