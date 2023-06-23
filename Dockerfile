@@ -11,7 +11,7 @@ RUN shards install
 RUN crystal build --release lib/sentry/src/sentry_cli.cr -o ./sentry
 
 # Comando para iniciar a aplicação a partir do sentry
-ENTRYPOINT ./sentry
+ENTRYPOINT make sam db:setup && ./sentry
 
 # ─────────────────────────────────────────────────────
 
@@ -26,14 +26,20 @@ RUN crystal build --static --release src/api.cr -o bin/api
 
 # ─────────────────────────────────────────────────────
 
-FROM alpine:latest as prod
+FROM alpine:3.18.2 as prod
 
 EXPOSE 3000
 
 WORKDIR /usr/src/api
 
-# Copia o executável compilado da fase anterior (build)
-COPY --from=build /usr/src/build-api/bin .
+# Copia os arquivos da fase anterior (build)
+COPY --from=build /usr/src/build-api .
+
+RUN apk add --no-cache make
+RUN apk add --no-cache crystal shards
+RUN apk add --no-cache libressl-dev
+RUN apk add --no-cache libxml2-dev
+RUN apk add --no-cache yaml-dev
 
 # Comando para iniciar a aplicação
-ENTRYPOINT ./api
+ENTRYPOINT ./bin/api
