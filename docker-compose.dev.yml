@@ -8,6 +8,9 @@ services:
       target: dev
     working_dir: /usr/src/dev-api
     restart: always
+    environment:
+      - APP_ENV=development # Variável para mudar ambiente do "jennifer ORM"
+      - KEMAL_ENV=development # Variável para mudar ambiente do "Kemal"
     env_file:
       - ./.env.development.local
     ports:
@@ -21,6 +24,9 @@ services:
       - ./spec:/usr/src/dev-api/spec # Mapeamento apenas para ambiente DEV
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
+    depends_on:
+      dev_db_multiverse_travels_booker:
+        condition: service_healthy # Deve aguardar o banco ficar operacional
     networks:
       - dev_multiverse_travels_booker
 
