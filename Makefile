@@ -25,7 +25,7 @@ compose_down_prod:
 	docker-compose down --remove-orphans
 
 compose_rm_images_prod:
-	docker image rm api_multiverse_travels_booker
+	docker image rm api_multiverse_travels_booker mysql_init_db
 
 # ─────────────────────────────────────────────────────
 
