@@ -14,5 +14,10 @@ module Api
       travels_bookers = model.all
       travels_bookers
     end
+
+    def get_travels_booker_by_id(id)
+      travels_booker = model.find(id)
+      travels_booker
+    end
   end
 end
