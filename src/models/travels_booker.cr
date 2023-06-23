@@ -1,3 +1,5 @@
+require "jennifer_twin"
+
 class TravelsBooker < Jennifer::Model::Base
   with_timestamps
 
@@ -7,4 +9,10 @@ class TravelsBooker < Jennifer::Model::Base
     created_at: Time?,
     updated_at: Time?,
   )
+end
+
+class TravelsBookerTwin
+  include JenniferTwin
+
+  map_fields TravelsBooker
 end
