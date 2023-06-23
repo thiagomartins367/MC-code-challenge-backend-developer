@@ -16,8 +16,15 @@ module Api
     end
 
     def get_travels_booker_by_id(id)
-      travels_booker = model.find(id)
+      travels_booker : TravelsBooker | Nil = model.find(id)
       travels_booker
+    end
+
+    def update_travels_booker(id, travel_stops_string)
+      travels_booker : TravelsBooker | Nil = model.find(id)
+      return false if travels_booker == nil
+      travels_booker = travels_booker.as(TravelsBooker)
+      travels_booker.update({travel_stops: travel_stops_string})
     end
   end
 end
