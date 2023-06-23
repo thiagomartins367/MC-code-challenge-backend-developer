@@ -30,5 +30,11 @@ module Api
       travels_booker_formatted = format_travels_bookers(travels_bookers.to_a)
       travels_booker_formatted
     end
+
+    def get_travels_booker_by_id(id)
+      travels_booker = repository.get_travels_booker_by_id(id)
+      travels_booker_formatted = format_travels_bookers([travels_booker])
+      travels_booker_formatted[0]
+    end
   end
 end
