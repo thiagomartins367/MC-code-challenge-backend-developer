@@ -8,20 +8,20 @@ module Api
 
     getter :service
 
-    def self.entity_factory
-      repository = TravelsBookerRepository.new
-      service = TravelsBookerService.new(repository)
+    def self.entity_factory : Api::TravelsBookerService
+      repository : TravelsBookerRepository = TravelsBookerRepository.new
+      service : Api::TravelsBookerService = TravelsBookerService.new(repository)
       service
     end
 
     post "/travel_plans" do |context|
-      response = context.response
+      response : HTTP::Server::Response = context.response
       request_body = context.params.json
-      result = entity_factory.create_travels_booker(request_body)
+      result : TravelsBookerStruct = entity_factory.create_travels_booker(request_body)
       if result.is_a?(Error)
-        status_code = result.status_code
-        message = result.message
-        message_json = {message: message}.to_json
+        status_code : Int32 = result.status_code
+        message : String = result.message
+        message_json : String = {message: message}.to_json
         halt context, status_code: status_code, response: message_json
       end
       response.status_code = 201
@@ -29,12 +29,12 @@ module Api
     end
 
     get "/travel_plans" do |context|
-      response = context.response
-      result = entity_factory.get_all_travels_booker
+      response : HTTP::Server::Response = context.response
+      result : Array(TravelsBookerStruct) = entity_factory.get_all_travels_booker
       if result.is_a?(Error)
-        status_code = result.status_code
-        message = result.message
-        message_json = {message: message}.to_json
+        status_code : Int32 = result.status_code
+        message : String = result.message
+        message_json : String = {message: message}.to_json
         halt context, status_code: status_code, response: message_json
       end
       response.status_code = 200
@@ -42,13 +42,13 @@ module Api
     end
 
     get "/travel_plans/:id" do |context|
-      response = context.response
-      id = context.params.url["id"]
-      result = entity_factory.get_travels_booker_by_id(id)
+      response : HTTP::Server::Response = context.response
+      id : String = context.params.url["id"]
+      result : TravelsBookerStruct | Error = entity_factory.get_travels_booker_by_id(id)
       if result.is_a?(Error)
-        status_code = result.status_code
-        message = result.message
-        message_json = {message: message}.to_json
+        status_code : Int32 = result.status_code
+        message : String = result.message
+        message_json : String = {message: message}.to_json
         halt context, status_code: status_code, response: message_json
       end
       response.status_code = 200
@@ -56,14 +56,14 @@ module Api
     end
 
     put "/travel_plans/:id" do |context|
-      response = context.response
-      id = context.params.url["id"]
+      response : HTTP::Server::Response = context.response
+      id : String = context.params.url["id"]
       request_body = context.params.json
-      result = entity_factory.update_travels_booker(id, request_body)
+      result : TravelsBookerStruct | Error = entity_factory.update_travels_booker(id, request_body)
       if result.is_a?(Error)
-        status_code = result.status_code
-        message = result.message
-        message_json = {message: message}.to_json
+        status_code : Int32 = result.status_code
+        message : String = result.message
+        message_json : String = {message: message}.to_json
         halt context, status_code: status_code, response: message_json
       end
       response.status_code = 200
@@ -71,13 +71,13 @@ module Api
     end
 
     delete "/travel_plans/:id" do |context|
-      response = context.response
-      id = context.params.url["id"]
+      response : HTTP::Server::Response = context.response
+      id : String = context.params.url["id"]
       result : Error | Nil = entity_factory.delete_travels_booker(id)
       if result.is_a?(Error)
-        status_code = result.status_code
-        message = result.message
-        message_json = {message: message}.to_json
+        status_code : Int32 = result.status_code
+        message : String = result.message
+        message_json : String = {message: message}.to_json
         halt context, status_code: status_code, response: message_json
       end
       response.status_code = 204
