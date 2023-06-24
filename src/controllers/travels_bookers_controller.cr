@@ -69,5 +69,18 @@ module Api
       response.status_code = 200
       result.to_json
     end
+
+    delete "/travel_plans/:id" do |context|
+      response = context.response
+      id = context.params.url["id"]
+      result : Error | Nil = entity_factory.delete_travels_booker(id)
+      if result.is_a?(Error)
+        status_code = result.status_code
+        message = result.message
+        message_json = {message: message}.to_json
+        halt context, status_code: status_code, response: message_json
+      end
+      response.status_code = 204
+    end
   end
 end
