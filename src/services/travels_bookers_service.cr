@@ -7,7 +7,9 @@ module Api
 
     getter :repository
 
-    private def format_travels_bookers(travels_bookers : Array(TravelsBooker) | Array(TravelsBookerStruct))
+    private def format_travels_bookers(
+      travels_bookers : Array(TravelsBooker) | Array(TravelsBookerStruct)
+    )
       travels_bookers.map do |travels_booker|
         travel_stops : Array(String) = travels_booker.travel_stops.split(",")
         {
@@ -49,6 +51,13 @@ module Api
       updated_travels_booker = TravelsBookerStruct.new(id.to_i32, travel_stops_string)
       updated_travels_booker_formatted = format_travels_bookers([updated_travels_booker])
       updated_travels_booker_formatted[0]
+    end
+
+    def delete_travels_booker(id)
+      is_deleted : Bool = repository.delete_travels_booker(id)
+      if !is_deleted
+        return Error.new(404, "travels_booker with id #{id} not found")
+      end
     end
   end
 end
