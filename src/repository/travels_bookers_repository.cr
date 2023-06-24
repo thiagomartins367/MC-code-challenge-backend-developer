@@ -26,5 +26,12 @@ module Api
       travels_booker = travels_booker.as(TravelsBooker)
       travels_booker.update({travel_stops: travel_stops_string})
     end
+
+    def delete_travels_booker(id)
+      travels_booker : TravelsBooker | Nil = model.find(id)
+      return false if travels_booker == nil
+      travels_booker = travels_booker.as(TravelsBooker)
+      travels_booker.destroy
+    end
   end
 end
