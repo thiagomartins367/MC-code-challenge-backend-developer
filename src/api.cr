@@ -8,14 +8,14 @@ module Api
 
   # TODO: Put your code here
   before_all "*" do |context|
-    response = context.response
+    response : HTTP::Server::Response = context.response
     response.headers["Content-Type"] = "application/json"
   end
 
   get "/" do |context|
     begin
-      file_path = "./public/docs/index.html"
-      file_content = File.read(file_path)
+      file_path : String = "./public/docs/index.html"
+      file_content : String = File.read(file_path)
       context.response.headers["Content-Type"] = "text/html"
       context.response.print file_content
     rescue ex : File::Error
