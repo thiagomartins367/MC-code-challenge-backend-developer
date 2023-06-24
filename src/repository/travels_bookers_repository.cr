@@ -20,17 +20,11 @@ module Api
       travels_booker
     end
 
-    def update_travels_booker(id, travel_stops_string)
-      travels_booker : TravelsBooker | Nil = model.find(id)
-      return false if travels_booker == nil
-      travels_booker = travels_booker.as(TravelsBooker)
+    def update_travels_booker(travels_booker, travel_stops_string) : Bool
       travels_booker.update({travel_stops: travel_stops_string})
     end
 
-    def delete_travels_booker(id)
-      travels_booker : TravelsBooker | Nil = model.find(id)
-      return false if travels_booker == nil
-      travels_booker = travels_booker.as(TravelsBooker)
+    def delete_travels_booker(travels_booker) : Bool
       travels_booker.destroy
     end
   end
