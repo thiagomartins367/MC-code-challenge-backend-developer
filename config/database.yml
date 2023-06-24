@@ -1,0 +1,31 @@
+# Arquivo de configuração de conexão
+# com o banco de dados (Jennifer ORM)
+
+# Esse arquivo foi commitado devido aos testes finais
+# do processo seletivo, mas não é uma boa prática.
+# O ideal é que ele seja criado a partir do arquivo "database.yml.example"
+default: &default
+  user: root
+  password: root123456
+  adapter: mysql
+  skip_dumping_schema_sql: true
+
+development:
+  <<: *default
+  db: dev_multiverse_travels_booker
+  host: dev_db_multiverse_travels_booker
+  port: "3306"
+  # docker_container: dev_db_multiverse_travels_booker
+  # command_shell: "docker"
+  # host: localhost
+  # port: "3003"
+
+test:
+  <<: *default
+  db: application_database_name_test
+
+production:
+  <<: *default
+  db: multiverse_travels_booker
+  host: db_multiverse_travels_booker
+  port: "3306"
