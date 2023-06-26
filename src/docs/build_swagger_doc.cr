@@ -87,7 +87,7 @@ def build_swagger_doc(code_docs_url : String)
       responses: [
         Swagger::Response.new(
           "200",
-          "Success response: Returns array of travelplans or empty array if there are no data. (Content-Type: application/json)",
+          "Success response: Returns array of travel plans or empty array if there are no data. (Content-Type: application/json)",
           content_type: "application/json",
         ),
       ],
