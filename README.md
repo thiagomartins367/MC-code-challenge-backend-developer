@@ -93,7 +93,7 @@ Once the containers are working the API can be used.
 
 ## Development
 
-To develop new features or refactor it is recommended to use Docker, as it provides an isolated and properly configured environment in the `docker-compose.yml` file.
+To develop new features or refactor it is recommended to use Docker, as it provides an isolated and properly configured environment in the `docker-compose.dev.yml` file.
 
 1. Definindo variáveis de ambiente e configurações de conexão
   - Create a `./db/.env.development.local` file using the `./db/.env.development.local.example` file.
