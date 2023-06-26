@@ -1,23 +1,23 @@
-require "../services/travels_bookers_service"
-require "../repository/travels_bookers_repository"
+require "../services/travels_plans_service"
+require "../repository/travels_plans_repository"
 
 module Api
-  class TravelsBookerController
-    def initialize(@service = TravelsBookerService)
+  class TravelsPlanController
+    def initialize(@service = TravelsPlanService)
     end
 
     getter :service
 
-    def self.entity_factory : Api::TravelsBookerService
-      repository : TravelsBookerRepository = TravelsBookerRepository.new
-      service : Api::TravelsBookerService = TravelsBookerService.new(repository)
+    def self.entity_factory : Api::TravelsPlanService
+      repository : TravelsPlanRepository = TravelsPlanRepository.new
+      service : Api::TravelsPlanService = TravelsPlanService.new(repository)
       service
     end
 
     post "/travel_plans" do |context|
       response : HTTP::Server::Response = context.response
       request_body = context.params.json
-      result : TravelsBookerStruct = entity_factory.create_travels_booker(request_body)
+      result : TravelsPlanStruct = entity_factory.create_travels_plan(request_body)
       if result.is_a?(Error)
         status_code : Int32 = result.status_code
         message : String = result.message
@@ -30,7 +30,7 @@ module Api
 
     get "/travel_plans" do |context|
       response : HTTP::Server::Response = context.response
-      result : Array(TravelsBookerStruct) = entity_factory.get_all_travels_booker
+      result : Array(TravelsPlanStruct) = entity_factory.get_all_travels_plan
       if result.is_a?(Error)
         status_code : Int32 = result.status_code
         message : String = result.message
@@ -44,7 +44,7 @@ module Api
     get "/travel_plans/:id" do |context|
       response : HTTP::Server::Response = context.response
       id : String = context.params.url["id"]
-      result : TravelsBookerStruct | Error = entity_factory.get_travels_booker_by_id(id)
+      result : TravelsPlanStruct | Error = entity_factory.get_travels_plan_by_id(id)
       if result.is_a?(Error)
         status_code : Int32 = result.status_code
         message : String = result.message
@@ -59,7 +59,7 @@ module Api
       response : HTTP::Server::Response = context.response
       id : String = context.params.url["id"]
       request_body = context.params.json
-      result : TravelsBookerStruct | Error = entity_factory.update_travels_booker(id, request_body)
+      result : TravelsPlanStruct | Error = entity_factory.update_travels_plan(id, request_body)
       if result.is_a?(Error)
         status_code : Int32 = result.status_code
         message : String = result.message
@@ -73,7 +73,7 @@ module Api
     delete "/travel_plans/:id" do |context|
       response : HTTP::Server::Response = context.response
       id : String = context.params.url["id"]
-      result : Error | Nil = entity_factory.delete_travels_booker(id)
+      result : Error | Nil = entity_factory.delete_travels_plan(id)
       if result.is_a?(Error)
         status_code : Int32 = result.status_code
         message : String = result.message

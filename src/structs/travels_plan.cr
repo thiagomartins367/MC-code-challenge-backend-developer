@@ -1,4 +1,4 @@
-struct TravelsBookerStruct
+struct TravelsPlanStruct
   include JSON::Serializable # Necessário para construir JSON da struct
 
   def initialize(

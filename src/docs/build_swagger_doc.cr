@@ -38,7 +38,7 @@ def build_swagger_doc(code_docs_url : String)
     Swagger::Property.new(
       "message",
       "string",
-      example: "travels_booker with id {id} not found",
+      example: "travels plan with id {id} not found",
       required: true,
     ),
   ]))
@@ -47,7 +47,7 @@ def build_swagger_doc(code_docs_url : String)
     Swagger::Property.new(
       "message",
       "string",
-      example: "update travels_book with id {id} failed",
+      example: "update travels plan with id {id} failed",
       required: true,
     ),
   ]))
@@ -56,7 +56,7 @@ def build_swagger_doc(code_docs_url : String)
     Swagger::Property.new(
       "message",
       "string",
-      example: "delete travels_book with id {id} failed",
+      example: "delete travels plan with id {id} failed",
       required: true,
     ),
   ]))

@@ -1,6 +1,6 @@
 require "jennifer_twin"
 
-class TravelsBooker < Jennifer::Model::Base
+class TravelsPlans < Jennifer::Model::Base
   with_timestamps
 
   mapping(
@@ -11,8 +11,8 @@ class TravelsBooker < Jennifer::Model::Base
   )
 end
 
-class TravelsBookerTwin
+class TravelsPlansTwin
   include JenniferTwin
 
-  map_fields TravelsBooker
+  map_fields TravelsPlans
 end

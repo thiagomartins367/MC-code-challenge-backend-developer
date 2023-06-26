@@ -30,13 +30,13 @@ CREATE TABLE `migration_versions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `travels_bookers`
+-- Table structure for table `travels_plans`
 --
 
-DROP TABLE IF EXISTS `travels_bookers`;
+DROP TABLE IF EXISTS `travels_plans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `travels_bookers` (
+CREATE TABLE `travels_plans` (
   `id` int NOT NULL AUTO_INCREMENT,
   `travel_stops` varchar(254) NOT NULL,
   `created_at` datetime NOT NULL,
