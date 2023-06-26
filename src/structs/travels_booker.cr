@@ -3,7 +3,7 @@ struct TravelsBookerStruct
 
   def initialize(
     @id : Int32,
-    @travel_stops : String | Array(Int32),
+    @travel_stops : String | Array(Int32)
   )
   end
 

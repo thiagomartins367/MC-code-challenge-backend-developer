@@ -8,7 +8,7 @@ module Api
     getter :repository
 
     private def format_travels_bookers(
-      travels_bookers : Array(TravelsBooker) | Array(TravelsBookerStruct),
+      travels_bookers : Array(TravelsBooker) | Array(TravelsBookerStruct)
     ) : Array(TravelsBookerStruct)
       travels_bookers.map do |travels_booker|
         travel_stops = travels_booker.travel_stops.as(String)
@@ -59,7 +59,7 @@ module Api
 
     def update_travels_booker(
       id : String,
-      request_body,
+      request_body
     ) : TravelsBookerStruct | Error
       travels_booker : TravelsBooker | Error = verify_travels_booker_exists(id)
       return travels_booker if travels_booker.is_a?(Error)
