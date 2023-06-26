@@ -17,7 +17,7 @@ module Api
 
   get "/code_docs" do |context|
     begin
-      file_path : String = "./public/docs/index.html"
+      file_path : String = "./public/index.html"
       file_content : String = File.read(file_path)
       context.response.headers["Content-Type"] = "text/html"
       context.response.print file_content
