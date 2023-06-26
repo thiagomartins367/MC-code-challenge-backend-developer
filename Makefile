@@ -50,8 +50,11 @@ sam:
 # ─────────────────────────────────────────────────────
 # Outros scripts
 
-install_dependencies:
+install_dependencies_dev:
 	shards install && make install_sentry
+
+install_dependencies_prod:
+	shards install --production && make build
 
 start_dev:
 	./sentry
@@ -72,4 +75,4 @@ install_sentry:
 	crystal build --release lib/sentry/src/sentry_cli.cr -o ./sentry
 
 generate_docs:
-	crystal docs --output public/docs src/api.cr
+	crystal docs --output public src/api.cr
