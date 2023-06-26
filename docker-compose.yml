@@ -11,6 +11,10 @@ services:
     environment:
       - APP_ENV=production # Variável para mudar ambiente do "jennifer ORM"
       - KEMAL_ENV=production # Variável para mudar ambiente do "Kemal"
+      - API_PORT=3000 # Variável para mudar porta da API
+      - API_HOST=0.0.0.0 # Variável mudar host da API
+      - API_SWAGGER_PORT=3000 # Variável mudar porta da API Swagger
+      - API_SWAGGER_HOST=localhost # Variável mudar host da API Swagger
     ports:
       - 3000:3000
     volumes:
