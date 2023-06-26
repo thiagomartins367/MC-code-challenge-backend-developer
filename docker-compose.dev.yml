@@ -16,6 +16,7 @@ services:
     ports:
       - 3005:3000
     volumes:
+      - ./README.md:/usr/src/dev-api/README.md # Mapeamento apenas para ambiente DEV
       - ./db:/usr/src/dev-api/db # Mapeamento apenas para ambiente DEV
       - ./sam.cr:/usr/src/dev-api/sam.cr # Mapeamento apenas para ambiente DEV
       - ./Makefile:/usr/src/dev-api/Makefile # Mapeamento apenas para ambiente DEV
