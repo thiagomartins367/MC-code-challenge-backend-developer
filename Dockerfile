@@ -11,7 +11,7 @@ RUN shards install
 RUN crystal build --release lib/sentry/src/sentry_cli.cr -o ./sentry
 
 # Comando para iniciar a aplicação a partir do sentry
-ENTRYPOINT make sam db:setup && ./sentry
+ENTRYPOINT make sam db:setup && make generate_docs && ./sentry
 
 # ─────────────────────────────────────────────────────
 
@@ -42,4 +42,4 @@ RUN apk add --no-cache libxml2-dev
 RUN apk add --no-cache yaml-dev
 
 # Comando para iniciar a aplicação
-ENTRYPOINT ./bin/api
+ENTRYPOINT make generate_docs && ./bin/api
