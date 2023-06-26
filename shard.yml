@@ -32,6 +32,9 @@ dependencies:
   sam:
     github: imdrasil/sam.cr
     version: "~> 0.4.2"
+  
+  swagger:
+    github: icyleaf/swagger
 
 development_dependencies:
   # `sentry` reconstrói e executa a API quando alterações de código são feitas
