@@ -5,7 +5,10 @@ require "swagger"
 require "swagger/http/server"
 require "./docs/build_swagger_doc"
 
-# TODO: Write documentation for `Api`
+# The `Api` module specifies the API version and defines generic routes and handlers.
+# In addition, he set up the Kemal server and the Swagger web API.
+#
+# This module is the API entry point.
 module Api
   VERSION = "1.0.0"
 
